@@ -238,7 +238,7 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: ansible/ansible:default
+      - image: python:3.7-alpine3.16
     steps:
       - checkout
       - add_ssh_keys:
@@ -250,7 +250,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum install -y tar gzip node npm
+            apk add --update --no-cache tar gzip node npm ansible
       - run:
           name: Deploy backend
           command: |
