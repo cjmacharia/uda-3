@@ -159,7 +159,7 @@ jobs:
 #
   configure-infrastructure:
     docker:
-      - image: ansible/ansible
+      - image: ansible/ansible:default
     steps:
       - checkout
       - add_ssh_keys:
@@ -238,7 +238,7 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: ansible/ansible
+      - image: ansible/ansible:default
     steps:
       - checkout
       - add_ssh_keys:
