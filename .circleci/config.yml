@@ -248,7 +248,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update --no-cache tar gzip node npm ansible
+            apk add --update --no-cache tar gzip nodejs npm ansible aws-cli
       - run:
           name: Deploy backend
           command: |
