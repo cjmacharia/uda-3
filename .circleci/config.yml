@@ -337,6 +337,7 @@ jobs:
             apk add --update --no-cache nodejs npm aws-cli curl
       - run:
           name: Update cloudfront distribution
+          no_output_timeout: 30m
           command: |
              aws cloudformation deploy \
              --template-file .circleci/files/cloudfront.yml \
