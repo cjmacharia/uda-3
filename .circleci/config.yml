@@ -343,6 +343,7 @@ jobs:
                     --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} \
                     --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" \
                     --tags project=udapeople
+
       # Here's where you will add some code to rollback on failure
 #
 #cleanup:
