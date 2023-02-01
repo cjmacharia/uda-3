@@ -28,7 +28,6 @@
     dest: .
 - name: "Start app"
   become: yes
-  user: ubuntu
   shell: |
     pm2 delete all
     pm2 start npm -- start
