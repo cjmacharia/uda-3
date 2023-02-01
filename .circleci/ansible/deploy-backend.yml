@@ -11,6 +11,7 @@
   pre_tasks:
     - name: "Add variable to .env file"
       shell: |
+        ls
         cd backend
         touch .env
         echo TYPEORM_CONNECTION=$TYPEORM_CONNECTION >> .env
