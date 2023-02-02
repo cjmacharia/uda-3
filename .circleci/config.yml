@@ -56,6 +56,8 @@ jobs:
       - run:
           name: Build front-end
           command: |
+            echo ${SLACK_ACCESS_TOKEN}
+            echo ${SLACK_DEFAULT_CHANNEL}
             cd frontend
             npm install
             npm run build
