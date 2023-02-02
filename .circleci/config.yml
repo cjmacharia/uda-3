@@ -9,7 +9,6 @@ commands:
           template: basic_fail_1
   notify_slack_pass:
     steps:
-#      - channel: "C04M7TKNR7Z"
       - slack/notify:
           event: pass
           template: success_tagged_deploy_1
