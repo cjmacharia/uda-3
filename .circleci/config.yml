@@ -44,7 +44,6 @@ commands:
 #              SUCCESS=$(curl https://kvdb.io/C6xdnjkW5QrFAo8oXF1tBX/migration_<< parameters.workflow_id >>)
 #              if (( $SUCCESS == 1 ));
 #              then
-
 #              fi
 jobs:
   build-frontend:
