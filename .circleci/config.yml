@@ -370,7 +370,7 @@ jobs:
       - run:
           name: Get old stack workflow id
           command: |
-            stacks=($(aws cloudformation describe-stacks --query "Stacks[*].Outputs[?OutputKey==\`ID\`].OutputValue" --no-paginate --output text))
+            stacks=(aws cloudformation describe-stacks --query "Stacks[*].Outputs[?OutputKey==\`ID\`].OutputValue" --no-paginate --output text)
             echo ${stacks[@]}
             for i in "${stacks[@]}"
             do
