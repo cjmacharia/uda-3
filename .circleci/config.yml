@@ -55,7 +55,6 @@ commands:
           command: |
             cd backend
             npm install --legacy-peer-deps
-            npm audit fix --force
             npm run migrations:revert
 #              SUCCESS=$(curl https://kvdb.io/C6xdnjkW5QrFAo8oXF1tBX/migration_<< parameters.workflow_id >>)
 #              if (( $SUCCESS == 1 ));
