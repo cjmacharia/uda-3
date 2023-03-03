@@ -22,7 +22,10 @@ Resources:
           FromPort: 3030
           ToPort: 3030
           CidrIp: 0.0.0.0/0
-
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['ec2-23-20-210-157.compute-1.amazonaws.com:9100']
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
