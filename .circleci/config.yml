@@ -338,7 +338,7 @@ jobs:
             echo ${BACKEND_IP}
             export API_URL="http://${BACKEND_IP}:303"
             echo "${API_URL}"
-            if [[ 'ok' =~ $(curl -s --connect-timeout 10 http://${BACKEND_IP}:3030/api/status | grep -o ok) ]];then return 0 else return 1;fi
+            if [[ 'ok' =~ $(curl -s --connect-timeout 10 http://${BACKEND_IP}:303/api/status | grep -o ok) ]];then return 0 else return 1;fi
 
       - run:
           name: Frontend smoke test.
