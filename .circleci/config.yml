@@ -311,7 +311,7 @@ jobs:
 
   smoke-test:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/python:3.11.1
     steps:
       - checkout
       - install_awscli
