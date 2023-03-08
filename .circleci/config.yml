@@ -53,17 +53,14 @@ commands:
           when: on_fail
           # Add when this will run
           command: |
-              cd ~/project/backend
-              npm cache clean --force
+            cd ~/project/backend
+            SUCCESS=$(curl  https://kvdb.io/C6xdnjkW5QrFAo8oXF1tBX/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            if (( $SUCCESS == 1 ));
+            then
               npm install
               npm audit fix
               npm run migrations:revert
-#            fi
-#              SUCCESS=$(curl https://kvdb.io/C6xdnjkW5QrFAo8oXF1tBX/migration_<< parameters.workflow_id >>)
-#              if (( $SUCCESS == 1 ));
-#              then
-
-#              fi
+            fi
 jobs:
   build-frontend:
     docker:
@@ -423,31 +420,32 @@ workflows:
     jobs:
       - build-frontend
       - build-backend
-      - smoke-test
-#       - test-frontend:
-#           requires: [build-frontend]
-#       - test-backend:
-#           requires: [build-backend]
-#       - scan-backend:
-#           requires: [build-backend]
-#       - scan-frontend:
-#           requires: [build-frontend]
-#       - deploy-infrastructure:
-#           requires: [build-frontend]
-# #          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-# #          filters:
-# #            branches:
-# #              only: [test-feature-branch]
-#       - configure-infrastructure:
-#           requires: [deploy-infrastructure]
-#       - run-migrations:
-#           requires: [configure-infrastructure]
-#       - deploy-frontend:
-#           requires: [run-migrations]
-#       - deploy-backend:
-#           requires: [run-migrations]
-# #          requires: [deploy-backend, deploy-frontend]
-#       - cloudfront-update:
-#           requires: [smoke-test]
-#       - cleanup:
-#           requires: [cloudfront-update]
+      - test-frontend:
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
+      - scan-backend:
+          requires: [build-backend]
+      - scan-frontend:
+          requires: [build-frontend]
+      - deploy-infrastructure:
+          requires: [build-frontend]
+#          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+#          filters:
+#            branches:
+#              only: [test-feature-branch]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
+      - deploy-frontend:
+          requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
+#          requires: [deploy-backend, deploy-frontend]
+      - smoke-test:
+          requires: [deploy-backend, deploy-frontend]
+      - cloudfront-update:
+          requires: [smoke-test]
+      - cleanup:
+          requires: [cloudfront-update]
