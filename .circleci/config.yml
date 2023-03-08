@@ -11,15 +11,15 @@ commands:
             unzip awscliv2.zip
             sudo ./aws/install
   install_nodejs:
-    description: Install Node.js 13.8.0
+    description: Install Node.js 18.15.0
     steps:
       - run:
-          name: Install Node.js 13.8.0
+          name: Install Node.js 18.15.0
           command: |
             curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
             sudo apt install -y nodejs
             sudo npm install --global n
-            sudo n 13.8.0
+            sudo n 18.15.0
   install_ansible:
     description: Install Ansible
     steps:
@@ -312,13 +312,10 @@ jobs:
 
   smoke-test:
     docker:
-      - image: python:3.9
+      - image: cimg/python:3.11.1
     steps:
       - checkout
-      - run:
-          name: install depenencies
-          command:
-            apk add --update --no-cache curl aws-cli nodejs npm
+      - install_awscli
       - install_nodejs
       - run:
           name: Get backend url
