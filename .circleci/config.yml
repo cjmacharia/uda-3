@@ -55,8 +55,7 @@ commands:
           command: |
               cd ~/project/backend
               npm install
-            # npm run migrations
-            # npm run migrations:revert
+              npm run migrations:revert
 #            fi
 #              SUCCESS=$(curl https://kvdb.io/C6xdnjkW5QrFAo8oXF1tBX/migration_<< parameters.workflow_id >>)
 #              if (( $SUCCESS == 1 ));
