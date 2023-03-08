@@ -54,6 +54,7 @@ commands:
           # Add when this will run
           command: |
               cd ~/project/backend
+              npm cache clean --force
               npm install
               npm audit fix
               npm run migrations:revert
