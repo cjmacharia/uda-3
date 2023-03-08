@@ -312,13 +312,14 @@ jobs:
 
   smoke-test:
     docker:
-      - image: python:3.7-alpine3.16
+      - image: python:3.9
     steps:
       - checkout
       - run:
           name: install depenencies
           command:
             apk add --update --no-cache curl aws-cli nodejs npm
+      - install_nodejs
       - run:
           name: Get backend url
           command: |
@@ -359,7 +360,7 @@ jobs:
 #
   cloudfront-update:
     docker:
-      - image: python:3.9
+      - image: python:3.10.5-alpine3.16
     steps:
       - checkout
       - run:
