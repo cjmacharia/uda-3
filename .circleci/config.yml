@@ -55,7 +55,7 @@ commands:
           command: |
             cd ~/project/backend
             SUCCESS=$(curl  https://kvdb.io/C6xdnjkW5QrFAo8oXF1tBX/migration_${CIRCLE_WORKFLOW_ID:0:7})
-            if (( $SUCCESS == 1 ));
+            if [[ "${SUCCESS}" == "1" ]];
             then
               npm install
               npm audit fix
@@ -274,9 +274,9 @@ jobs:
       - image: cimg/python:3.11.1
     steps:
       - checkout
-      - install_awscli
-      - install_nodejs
-      - install_ansible
+#      - install_awscli
+#      - install_nodejs
+#      - install_ansible
       - add_ssh_keys:
           fingerprints:
             - "9a:91:14:d9:39:22:79:c5:ba:06:2e:9a:61:d3:64:07"
@@ -293,7 +293,7 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            npm install
+#            npm install
             npm run build
             cd ..
             tar -C backend -czvf artifact.tar.gz .
