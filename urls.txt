@@ -1,2 +1,0 @@
-https://github.com/cjmacharia/uda-3
-udapeople-89bf25a.s3-website-us-east-1.amazonaws.com
