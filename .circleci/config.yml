@@ -283,17 +283,13 @@ jobs:
             # Add ssh keys with fingerprint
       - attach_workspace:
           at: ~/
-#      - run:
-#          name: Install dependencies
-#          command: |
-#            apk add --update --no-cache tar gzip nodejs npm ansible aws-cli
       - restore_cache:
           keys: [ backend-build ]
       - run:
           name: Deploy backend
           command: |
             cd backend
-#            npm install
+            npm install
             npm run build
             cd ..
             tar -C backend -czvf artifact.tar.gz .
